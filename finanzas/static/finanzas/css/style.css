@@ -1,0 +1,68 @@
+/* Reseteo básico */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: black;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra el título */
+    position: relative;
+}
+
+/* El botón de las 3 rayitas */
+.icon-menu {
+    position: fixed; /* Cambiamos absolute por fixed para que no se mueva al scrollear */
+    left: 20px;
+    top: 15px;      /* Lo ajustamos para que quede centrado en el header */
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    z-index: 1001;  /* CRUCIAL: Debe ser mayor al z-index del sidebar (que es 1000) */
+    transition: all 0.3s;
+}
+
+/* Ocultar el checkbox */
+#btn-menu {
+    display: none;
+}
+
+/* Configuración del Menú Lateral (Sidebar) */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #1a1a1a;
+    position: fixed;
+    top: 0;
+    left: -250px; /* Lo sacamos de la pantalla por la izquierda */
+    transition: all 0.3s; /* Animación suave */
+    z-index: 1000;
+    padding-top: 60px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 20px;
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid #333;
+}
+
+.sidebar ul li a:hover {
+    background-color: #333;
+}
+
+/* --- LA MAGIA --- */
+/* Cuando el checkbox está seleccionado, el sidebar se mueve a la derecha */
+#btn-menu:checked ~ .sidebar {
+    left: 0;
+}
