@@ -66,3 +66,35 @@ header {
 #btn-menu:checked ~ .sidebar {
     left: 0;
 }
+
+/*Modal*/
+
+/* Modificamos el estilo del modal en style.css */
+#miModal {
+    position: absolute; /* Para que flote sobre el contenido */
+    top: 50%;           /* Lo bajamos al medio */
+    left: 50%;          /* Lo movemos al medio */
+    transform: translate(-50%, -50%); /* El truco matemático para centrado perfecto */
+    
+    width: 90%; 
+    max-width: 500px;
+    padding: 30px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Sombra más profunda para que resalte */
+    background-color: white;
+    z-index: 10;
+}
+/* IMPORTANTE: Quitamos el backdrop porque ya no es una ventana emergente */
+#miModal::backdrop {
+    display: none;
+}
+
+#contenido {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centra vertical */
+    align-items: center;     /* centra horizontal */
+    height: 100vh;           /* ocupa toda la pantalla */
+    text-align: center;
+}
