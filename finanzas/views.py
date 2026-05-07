@@ -1,47 +1,58 @@
 from django.shortcuts import render
 import assemblyai as aai
+import tempfile
+import re
 from django.http import JsonResponse
 from .models import Movimiento
-import re
 
 def inicio(request):
     return render(request, 'finanzas/index.html')
 
-#Configurar la API Key aquí
-aai.settings.api_key="276c1edb92d7463abd0cb19562062217"
+# Configurar la API Key de AssemblyAI
+aai.settings.api_key = "3f7eca5b1bf448bfa2c71c4b5e77a7cb"
 
 def transcribir_audio(request):
     if request.method == 'POST' and request.FILES.get('audio'):
         archivo_audio = request.FILES['audio']
 
-        # 1. Transcribir el audio usando AssemblyAI
+        # Guardar archivo temporal
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
+            for chunk in archivo_audio.chunks():
+                tmp.write(chunk)
+            tmp_path = tmp.name
+
+            # Configurar el modelo de AssemblyAI (lista en plural)
+            config = aai.TranscriptionConfig(speech_models=["universal"])
+
+
+
         transcriber = aai.Transcriber()
+        transcript = transcriber.transcribe(tmp_path, config=config)
 
-        #Le pasamos el archivo directamente
-        transcript = transcriber.transcribe(archivo_audio.read())
-
+        # Manejo de errores de AssemblyAI
         if transcript.status == aai.TranscriptStatus.error:
             return JsonResponse({'error': transcript.error}, status=500)
+
+        # Texto final de la transcripción
         texto_final = transcript.text
 
-        #2. Logica simple para extraer el monto (buscamos numeros dentro del texto)
-        
-        numeros= re.findall(r'\d+', texto_final)
-        monto_detectado= int(numeros[0]) if numeros else 0
+        # Extraer números del texto para detectar monto
+        numeros = re.findall(r'\d+', texto_final)
+        monto_detectado = int(numeros[0]) if numeros else 0
 
-        #3. Guardar en la bd
-
-        nuevo_gasto= Movimiento.objects.create(
-            monto = monto_detectado,
-            concepto = texto_final,
-            tipo = 'EGRE', 
-            metodo_pago = 'Efectivo'
+        # Guardar en la base de datos
+        Movimiento.objects.create(
+            monto=monto_detectado,
+            concepto=texto_final,
+            tipo='EGRE',
+            metodo_pago='Efectivo'
         )
 
+        # Respuesta JSON al frontend
         return JsonResponse({
             'mensaje': 'Gasto Registrado!',
             'transcripcion': texto_final,
             'monto': monto_detectado
         })
-    return JsonResponse({'error':'Método no permitido'}, status=400)
-         
+
+    return JsonResponse({'error': 'Método no permitido'}, status=400)

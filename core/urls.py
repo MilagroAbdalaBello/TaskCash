@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from finanzas import views  # 👈 importar la vista
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('finanzas.urls'))
+    path('finanzas/', include('finanzas.urls')),
+    path('', views.inicio, name='home'),  # 👈 ruta raíz
 ]
+
+

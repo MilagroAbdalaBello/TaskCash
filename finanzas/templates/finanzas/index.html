@@ -12,33 +12,20 @@
     <header>
         <h1>TalkCash</h1>
     </header>
+
     <main id="contenido">
-    <h2>Bienvenido</h2>
-    <p>Escriba sus gatos del dia a dia</p>
-    <form>
-        <input type="text" id="contenido" name="gasto" placeholder="Escribe tus gastos">
+        <h2>Bienvenido</h2>
+        <p>Escriba sus gastos del día a día</p>
+        
+        <div style="margin: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
+            <p id="mensaje-estado">Estado: <span id="texto-ia">Esperando...</span></p>
+        </div>
 
-    </form>
-</main>
+        <button id="btnGrabar" type="button" onclick="manejarClick()">🎤 Grabar Gasto</button>
+    </main>
 
-<div class="grabadora-container">
-    <button id="btnGrabar">🎤 Grabar Gasto</button>
-    <p id="estado"></p>
-    <p>Lo que escuché: <span id="texto-ia">...</span></p>
-</div>
-  
-
-   <!--<nav class="sidebar">
-    <ul>
-        <li><a href="#" id="abrirModal">Escribir Gasto</a></li>
-        <li><a href="#" id="verHistorial">Historial</a></li>
-         Ya no hay nada aquí adentro -->
-    <!--</ul>
-</nav>
-Contenido del sidebar-->
+    <script src="{% static 'finanzas/js/script.js' %}"></script>
 
 
-
-    <script src="{% static 'finanzas/css/js/script.js' %}"></script>
 </body>
 </html>
