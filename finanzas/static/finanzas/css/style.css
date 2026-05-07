@@ -15,86 +15,24 @@ header {
     position: relative;
 }
 
-/* El botón de las 3 rayitas */
-.icon-menu {
-    position: fixed; /* Cambiamos absolute por fixed para que no se mueva al scrollear */
-    left: 20px;
-    top: 15px;      /* Lo ajustamos para que quede centrado en el header */
-    font-size: 30px;
-    cursor: pointer;
-    color: white;
-    z-index: 1001;  /* CRUCIAL: Debe ser mayor al z-index del sidebar (que es 1000) */
-    transition: all 0.3s;
-}
-
-/* Ocultar el checkbox */
-#btn-menu {
-    display: none;
-}
-
-/* Configuración del Menú Lateral (Sidebar) */
-.sidebar {
-    width: 250px;
-    height: 100vh;
-    background-color: #1a1a1a;
-    position: fixed;
-    top: 0;
-    left: -250px; /* Lo sacamos de la pantalla por la izquierda */
-    transition: all 0.3s; /* Animación suave */
-    z-index: 1000;
-    padding-top: 60px;
-}
-
-.sidebar ul {
-    list-style: none;
-}
-
-.sidebar ul li a {
-    display: block;
-    padding: 20px;
-    color: white;
-    text-decoration: none;
-    border-bottom: 1px solid #333;
-}
-
-.sidebar ul li a:hover {
-    background-color: #333;
-}
-
-/* --- LA MAGIA --- */
-/* Cuando el checkbox está seleccionado, el sidebar se mueve a la derecha */
-#btn-menu:checked ~ .sidebar {
-    left: 0;
-}
-
-/*Modal*/
-
-/* Modificamos el estilo del modal en style.css */
-#miModal {
-    position: absolute; /* Para que flote sobre el contenido */
-    top: 50%;           /* Lo bajamos al medio */
-    left: 50%;          /* Lo movemos al medio */
-    transform: translate(-50%, -50%); /* El truco matemático para centrado perfecto */
-    
-    width: 90%; 
-    max-width: 500px;
-    padding: 30px;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Sombra más profunda para que resalte */
-    background-color: white;
-    z-index: 10;
-}
-/* IMPORTANTE: Quitamos el backdrop porque ya no es una ventana emergente */
-#miModal::backdrop {
-    display: none;
-}
-
-#contenido {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* centra vertical */
-    align-items: center;     /* centra horizontal */
-    height: 100vh;           /* ocupa toda la pantalla */
+h2 {
     text-align: center;
 }
+
+p {
+    text-align: center;
+}
+
+input {
+    border: 2px solid #333;
+    padding: 8px;
+    resize: none;
+    text-align: center;
+    
+}
+
+form {
+    align-content: center;
+}
+
+

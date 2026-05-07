@@ -8,27 +8,35 @@
     <title>TalkCash</title>
 </head>
 <body>
-    <input type="checkbox" id="btn-menu">
     
     <header>
-        <label for="btn-menu" class="icon-menu">☰</label>
         <h1>TalkCash</h1>
     </header>
+    <main id="contenido">
+    <h2>Bienvenido</h2>
+    <p>Escriba sus gatos del dia a dia</p>
+    <form>
+        <input type="text" id="contenido" name="gasto" placeholder="Escribe tus gastos">
+
+    </form>
+</main>
+
+<div class="grabadora-container">
+    <button id="btnGrabar">🎤 Grabar Gasto</button>
+    <p id="estado"></p>
+    <p>Lo que escuché: <span id="texto-ia">...</span></p>
+</div>
   
 
-   <nav class="sidebar">
+   <!--<nav class="sidebar">
     <ul>
         <li><a href="#" id="abrirModal">Escribir Gasto</a></li>
         <li><a href="#" id="verHistorial">Historial</a></li>
-        <!-- Ya no hay nada aquí adentro -->
-    </ul>
+         Ya no hay nada aquí adentro -->
+    <!--</ul>
 </nav>
-<!--Contenido del sidebar-->
-<main id="contenido">
-    <h2>Bienvenido</h2>
-    <p>Selecciona una opción del menú</p>
+Contenido del sidebar-->
 
-</main>
 
 
     <script src="{% static 'finanzas/css/js/script.js' %}"></script>
